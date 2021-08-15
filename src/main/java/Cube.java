@@ -14,7 +14,7 @@ public class Cube {
     private Vector3D scale;
     private Vector2D textureOffset;
     private boolean textureMirrored;
-    private final List<Cube> childrens = new ArrayList();
+    private final List<Cube> children = new ArrayList();
 
     public Cube(String name, CubeDimensions dimensions, Vector3D offset, Vector3D rotation, Vector3D position, Vector3D scale, Vector2D textureOffset, boolean textureMirrored) {
         this.name = name;
@@ -28,7 +28,7 @@ public class Cube {
     }
 
     public void addChildren(Cube children){
-        childrens.add(children);
+        this.children.add(children);
     }
 
     public JsonObject toJsonObject(){
@@ -46,8 +46,8 @@ public class Cube {
         object.addProperty("hidden", false);
         object.add("metadata", new JsonArray());
         JsonArray childrensArray = new JsonArray();
-        for (int i = 0;i<this.childrens.size();i++) {
-            childrensArray.add(childrens.get(i).toJsonObject());
+        for (int i = 0; i<this.children.size(); i++) {
+            childrensArray.add(children.get(i).toJsonObject());
         }
         object.add("children", childrensArray);
         Random r = new Random();
